@@ -2,13 +2,6 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
-import { Button } from "@/components/ui/button";
-
-const navLinks = [
-  { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
-  { href: "/contact", label: "Contact" },
-];
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -37,54 +30,69 @@ const Navigation = () => {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.6 }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           isScrolled
-            ? "bg-background/95 backdrop-blur-md shadow-sm"
+            ? "bg-background/95 backdrop-blur-md"
             : "bg-transparent"
         }`}
       >
-        <div className="container max-w-7xl mx-auto px-4">
-          <div className="flex items-center justify-between h-20">
-            {/* Logo */}
+        <div className="container max-w-7xl mx-auto px-6 md:px-12">
+          <div className="flex items-center justify-between h-24">
+            {/* Left Navigation */}
+            <div className="hidden md:flex items-center gap-12">
+              <Link
+                to="/"
+                className={`font-body text-xs uppercase tracking-[0.25em] transition-colors duration-300 hover:opacity-60 ${
+                  isScrolled ? "text-foreground" : "text-white"
+                } ${isActive("/") ? "opacity-60" : ""}`}
+              >
+                Home
+              </Link>
+              <Link
+                to="/about"
+                className={`font-body text-xs uppercase tracking-[0.25em] transition-colors duration-300 hover:opacity-60 ${
+                  isScrolled ? "text-foreground" : "text-white"
+                } ${isActive("/about") ? "opacity-60" : ""}`}
+              >
+                About
+              </Link>
+            </div>
+
+            {/* Center Logo */}
             <Link 
               to="/" 
-              className={`font-display text-2xl transition-colors ${
+              className={`font-display text-2xl md:text-3xl tracking-wide transition-colors duration-300 ${
                 isScrolled ? "text-foreground" : "text-white"
               }`}
             >
               Hair Studio
             </Link>
 
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center gap-8">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  to={link.href}
-                  className={`font-body text-sm uppercase tracking-wider transition-colors hover:text-accent ${
-                    isScrolled ? "text-foreground" : "text-white/90"
-                  } ${isActive(link.href) ? "text-accent" : ""}`}
-                >
-                  {link.label}
-                </Link>
-              ))}
-              <Button
-                asChild
-                size="sm"
-                className={`font-body text-sm uppercase tracking-wider ${
-                  isScrolled
-                    ? "bg-accent text-accent-foreground hover:bg-accent/90"
-                    : "bg-white/20 text-white border border-white/30 hover:bg-white hover:text-charcoal"
-                }`}
+            {/* Right Navigation */}
+            <div className="hidden md:flex items-center gap-12">
+              <Link
+                to="/contact"
+                className={`font-body text-xs uppercase tracking-[0.25em] transition-colors duration-300 hover:opacity-60 ${
+                  isScrolled ? "text-foreground" : "text-white"
+                } ${isActive("/contact") ? "opacity-60" : ""}`}
               >
-                <Link to="/booking">Booking</Link>
-              </Button>
+                Contact
+              </Link>
+              <Link
+                to="/booking"
+                className={`font-body text-xs uppercase tracking-[0.25em] transition-colors duration-300 hover:opacity-60 ${
+                  isScrolled ? "text-foreground" : "text-white"
+                } ${isActive("/booking") ? "opacity-60" : ""}`}
+              >
+                Booking
+              </Link>
             </div>
 
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className={`md:hidden p-2 ${isScrolled ? "text-foreground" : "text-white"}`}
+              className={`md:hidden p-2 transition-colors duration-300 ${isScrolled ? "text-foreground" : "text-white"}`}
+              aria-label="Toggle menu"
             >
               {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -92,35 +100,49 @@ const Navigation = () => {
         </div>
       </motion.nav>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu - Full Screen Overlay */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-40 bg-background md:hidden pt-20"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.4 }}
+            className="fixed inset-0 z-40 bg-background md:hidden"
           >
-            <div className="flex flex-col items-center justify-center h-full gap-8">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  to={link.href}
-                  className={`font-display text-3xl hover:text-accent transition-colors ${
-                    isActive(link.href) ? "text-accent" : "text-foreground"
-                  }`}
-                >
-                  {link.label}
-                </Link>
-              ))}
-              <Button
-                asChild
-                size="lg"
-                className="mt-4 font-body uppercase tracking-wider bg-accent text-accent-foreground hover:bg-accent/90"
+            <div className="flex flex-col items-center justify-center h-full gap-10">
+              <Link
+                to="/"
+                className={`font-body text-sm uppercase tracking-[0.3em] transition-opacity hover:opacity-50 ${
+                  isActive("/") ? "opacity-50" : "text-foreground"
+                }`}
               >
-                <Link to="/booking">Booking</Link>
-              </Button>
+                Home
+              </Link>
+              <Link
+                to="/about"
+                className={`font-body text-sm uppercase tracking-[0.3em] transition-opacity hover:opacity-50 ${
+                  isActive("/about") ? "opacity-50" : "text-foreground"
+                }`}
+              >
+                About
+              </Link>
+              <Link
+                to="/contact"
+                className={`font-body text-sm uppercase tracking-[0.3em] transition-opacity hover:opacity-50 ${
+                  isActive("/contact") ? "opacity-50" : "text-foreground"
+                }`}
+              >
+                Contact
+              </Link>
+              <Link
+                to="/booking"
+                className={`font-body text-sm uppercase tracking-[0.3em] transition-opacity hover:opacity-50 ${
+                  isActive("/booking") ? "opacity-50" : "text-foreground"
+                }`}
+              >
+                Booking
+              </Link>
             </div>
           </motion.div>
         )}

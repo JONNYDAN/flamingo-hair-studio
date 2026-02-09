@@ -1,18 +1,19 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
 const navLinks = [
-  { href: "#about", label: "Giới Thiệu" },
-  { href: "#services", label: "Dịch Vụ" },
-  { href: "#gallery", label: "Bộ Sưu Tập" },
-  { href: "#contact", label: "Liên Hệ" },
+  { href: "/", label: "Home" },
+  { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact" },
 ];
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,13 +24,12 @@ const Navigation = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const scrollToBooking = () => {
-    const bookingSection = document.getElementById("booking");
-    if (bookingSection) {
-      bookingSection.scrollIntoView({ behavior: "smooth" });
-    }
+  // Close mobile menu when route changes
+  useEffect(() => {
     setIsMobileMenuOpen(false);
-  };
+  }, [location.pathname]);
+
+  const isActive = (path: string) => location.pathname === path;
 
   return (
     <>
@@ -46,35 +46,38 @@ const Navigation = () => {
         <div className="container max-w-7xl mx-auto px-4">
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
-            <a href="#" className={`font-display text-2xl transition-colors ${
-              isScrolled ? "text-foreground" : "text-white"
-            }`}>
+            <Link 
+              to="/" 
+              className={`font-display text-2xl transition-colors ${
+                isScrolled ? "text-foreground" : "text-white"
+              }`}
+            >
               Hair Studio
-            </a>
+            </Link>
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center gap-8">
               {navLinks.map((link) => (
-                <a
+                <Link
                   key={link.href}
-                  href={link.href}
+                  to={link.href}
                   className={`font-body text-sm uppercase tracking-wider transition-colors hover:text-accent ${
                     isScrolled ? "text-foreground" : "text-white/90"
-                  }`}
+                  } ${isActive(link.href) ? "text-accent" : ""}`}
                 >
                   {link.label}
-                </a>
+                </Link>
               ))}
               <Button
-                onClick={scrollToBooking}
+                asChild
                 size="sm"
                 className={`font-body text-sm uppercase tracking-wider ${
                   isScrolled
-                    ? "bg-primary text-primary-foreground hover:bg-primary/90"
+                    ? "bg-accent text-accent-foreground hover:bg-accent/90"
                     : "bg-white/20 text-white border border-white/30 hover:bg-white hover:text-charcoal"
                 }`}
               >
-                Đặt Lịch
+                <Link to="/booking">Booking</Link>
               </Button>
             </div>
 
@@ -101,21 +104,22 @@ const Navigation = () => {
           >
             <div className="flex flex-col items-center justify-center h-full gap-8">
               {navLinks.map((link) => (
-                <a
+                <Link
                   key={link.href}
-                  href={link.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="font-display text-3xl text-foreground hover:text-accent transition-colors"
+                  to={link.href}
+                  className={`font-display text-3xl hover:text-accent transition-colors ${
+                    isActive(link.href) ? "text-accent" : "text-foreground"
+                  }`}
                 >
                   {link.label}
-                </a>
+                </Link>
               ))}
               <Button
-                onClick={scrollToBooking}
+                asChild
                 size="lg"
-                className="mt-4 font-body uppercase tracking-wider"
+                className="mt-4 font-body uppercase tracking-wider bg-accent text-accent-foreground hover:bg-accent/90"
               >
-                Đặt Lịch Ngay
+                <Link to="/booking">Booking</Link>
               </Button>
             </div>
           </motion.div>

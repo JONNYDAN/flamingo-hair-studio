@@ -1,43 +1,44 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
+import { Link } from "react-router-dom";
 
 const services = [
   {
     id: 1,
-    name: "Cắt Tóc",
-    description: "Cắt tạo kiểu theo xu hướng mới nhất",
-    price: "150k - 300k",
+    name: "Signature Cut",
+    description: "Consultation, cut, and finish",
+    price: "350k - 600k",
   },
   {
     id: 2,
-    name: "Nhuộm Tóc",
-    description: "Nhuộm màu thời trang, highlight, ombre",
-    price: "500k - 2.000k",
+    name: "Balayage",
+    description: "Soft, dimensional color",
+    price: "1.500k - 3.200k",
   },
   {
     id: 3,
-    name: "Uốn Tóc",
-    description: "Uốn xoăn, uốn phồng với công nghệ Hàn Quốc",
-    price: "800k - 1.500k",
+    name: "Digital Perm",
+    description: "Heat perm for soft waves",
+    price: "1.400k - 2.500k",
   },
   {
     id: 4,
-    name: "Duỗi Tóc",
-    description: "Duỗi thẳng, phục hồi tóc với keratin cao cấp",
-    price: "700k - 1.200k",
+    name: "Keratin Straight",
+    description: "Smooth, repair finish",
+    price: "1.200k - 2.200k",
   },
   {
     id: 5,
-    name: "Phục Hồi",
-    description: "Điều trị tóc hư tổn, cấp ẩm chuyên sâu",
-    price: "400k - 800k",
+    name: "Scalp Therapy",
+    description: "Deep scalp care",
+    price: "350k - 600k",
   },
   {
     id: 6,
-    name: "Gội Massage",
-    description: "Gội đầu thư giãn kết hợp massage da đầu",
-    price: "100k - 200k",
+    name: "Signature Blowout",
+    description: "Volume blowout",
+    price: "200k - 350k",
   },
 ];
 
@@ -47,7 +48,7 @@ const Services = () => {
 
   return (
     <section id="services" className="py-32 md:py-40 bg-secondary/30">
-      <div className="container max-w-5xl mx-auto px-6">
+      <div className="container max-w-6xl mx-auto px-6">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -56,11 +57,11 @@ const Services = () => {
           className="text-center mb-20"
           ref={ref}
         >
-          <p className="font-body text-xs uppercase tracking-[0.3em] text-muted-foreground mb-6">
-            Services
+          <p className="font-body text-xs uppercase tracking-[0.35em] text-muted-foreground mb-6">
+            Signature Menu
           </p>
           <h2 className="font-display text-4xl md:text-5xl font-light text-foreground">
-            Menu
+            Featured services
           </h2>
         </motion.div>
 
@@ -72,7 +73,7 @@ const Services = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="group border-b border-border py-8 flex justify-between items-center hover:bg-background/50 transition-colors px-4 -mx-4"
+              className="group border-b border-border py-8 flex flex-col md:flex-row justify-between md:items-center hover:bg-background/50 transition-colors px-4 -mx-4"
             >
               <div>
                 <h3 className="font-display text-xl md:text-2xl text-foreground mb-1">
@@ -87,6 +88,15 @@ const Services = () => {
               </p>
             </motion.div>
           ))}
+        </div>
+
+        <div className="text-center mt-14">
+          <Link
+            to="/menu"
+            className="inline-flex items-center justify-center border border-foreground/30 px-8 py-4 text-xs uppercase tracking-[0.3em] font-body hover:bg-foreground hover:text-background transition-colors"
+          >
+            View full menu
+          </Link>
         </div>
       </div>
     </section>

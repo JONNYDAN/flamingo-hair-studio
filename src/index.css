@@ -105,6 +105,11 @@ All colors MUST be HSL.
   body {
     @apply bg-background text-foreground;
     font-family: 'Montserrat', sans-serif;
+    background-image:
+      radial-gradient(circle at 20% 10%, hsl(30 20% 96%) 0%, transparent 45%),
+      radial-gradient(circle at 80% 0%, hsl(38 35% 92%) 0%, transparent 40%),
+      linear-gradient(180deg, hsl(var(--background)) 0%, hsl(30 15% 96%) 100%);
+    background-attachment: fixed;
   }
 
   h1, h2, h3, h4, h5, h6 {

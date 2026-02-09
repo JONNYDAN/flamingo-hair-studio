@@ -32,14 +32,14 @@ const Navigation = () => {
         transition={{ duration: 0.6 }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           isScrolled
-            ? "bg-background/95 backdrop-blur-md"
+            ? "bg-background/95 backdrop-blur-md border-b border-border"
             : "bg-transparent"
         }`}
       >
         <div className="container max-w-7xl mx-auto px-6 md:px-12">
           <div className="flex items-center justify-between h-24">
             {/* Left Navigation */}
-            <div className="hidden md:flex items-center gap-12">
+            <div className="hidden md:flex items-center gap-10">
               <Link
                 to="/"
                 className={`font-body text-xs uppercase tracking-[0.25em] transition-colors duration-300 hover:opacity-60 ${
@@ -47,6 +47,14 @@ const Navigation = () => {
                 } ${isActive("/") ? "opacity-60" : ""}`}
               >
                 Home
+              </Link>
+              <Link
+                to="/menu"
+                className={`font-body text-xs uppercase tracking-[0.25em] transition-colors duration-300 hover:opacity-60 ${
+                  isScrolled ? "text-foreground" : "text-white"
+                } ${isActive("/menu") ? "opacity-60" : ""}`}
+              >
+                Menu
               </Link>
               <Link
                 to="/about"
@@ -59,17 +67,17 @@ const Navigation = () => {
             </div>
 
             {/* Center Logo */}
-            <Link 
-              to="/" 
-              className={`font-display text-2xl md:text-3xl tracking-wide transition-colors duration-300 ${
-                isScrolled ? "text-foreground" : "text-white"
-              }`}
-            >
-              Hair Studio
+            <Link to="/" className="flex items-center justify-center">
+              <span className="sr-only">Willow Hair Salon</span>
+              <img
+                src="/Logo/fulllogo_transparent.png"
+                alt="Willow Hair Salon"
+                style={{ width: "100px", height: "auto" }}
+              />
             </Link>
 
             {/* Right Navigation */}
-            <div className="hidden md:flex items-center gap-12">
+            <div className="hidden md:flex items-center gap-10">
               <Link
                 to="/contact"
                 className={`font-body text-xs uppercase tracking-[0.25em] transition-colors duration-300 hover:opacity-60 ${
@@ -118,6 +126,14 @@ const Navigation = () => {
                 }`}
               >
                 Home
+              </Link>
+              <Link
+                to="/menu"
+                className={`font-body text-sm uppercase tracking-[0.3em] transition-opacity hover:opacity-50 ${
+                  isActive("/menu") ? "opacity-50" : "text-foreground"
+                }`}
+              >
+                Menu
               </Link>
               <Link
                 to="/about"

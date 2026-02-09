@@ -18,11 +18,11 @@ const Contact = () => {
           className="text-center mb-16"
           ref={ref}
         >
-          <p className="text-accent tracking-[0.3em] uppercase text-sm mb-4 font-body">
-            Liên Hệ
+          <p className="text-accent tracking-[0.35em] uppercase text-sm mb-4 font-body">
+            Contact
           </p>
           <h2 className="font-display text-4xl md:text-5xl font-light text-foreground">
-            Ghé Thăm Chúng Tôi
+            Visit the salon
           </h2>
         </motion.div>
 
@@ -40,10 +40,11 @@ const Contact = () => {
                 <MapPin className="w-5 h-5 text-accent" />
               </div>
               <div>
-                <h3 className="font-display text-xl mb-2 text-foreground">Địa Chỉ</h3>
+                <h3 className="font-display text-xl mb-2 text-foreground">Address</h3>
                 <p className="text-muted-foreground font-body">
-                  123 Đường Nguyễn Huệ, Quận 1<br />
-                  TP. Hồ Chí Minh
+                  2306 Almaden Rd
+                  <br />
+                  San Jose, CA 95125
                 </p>
               </div>
             </div>
@@ -54,10 +55,10 @@ const Contact = () => {
                 <Phone className="w-5 h-5 text-accent" />
               </div>
               <div>
-                <h3 className="font-display text-xl mb-2 text-foreground">Điện Thoại</h3>
+                <h3 className="font-display text-xl mb-2 text-foreground">Phone</h3>
                 <p className="text-muted-foreground font-body">
-                  <a href="tel:0901234567" className="hover:text-accent transition-colors">
-                    090 123 4567
+                  <a href="tel:+14089781499" className="hover:text-accent transition-colors">
+                    +1 (408) 978-1499
                   </a>
                 </p>
               </div>
@@ -84,10 +85,11 @@ const Contact = () => {
                 <Clock className="w-5 h-5 text-accent" />
               </div>
               <div>
-                <h3 className="font-display text-xl mb-2 text-foreground">Giờ Mở Cửa</h3>
+                <h3 className="font-display text-xl mb-2 text-foreground">Hours</h3>
                 <div className="text-muted-foreground font-body space-y-1">
-                  <p>Thứ 2 - Thứ 6: 9:00 - 19:00</p>
-                  <p>Thứ 7 - Chủ Nhật: 9:00 - 18:00</p>
+                  <p>Tue - Fri: 9:30 AM - 6:00 PM</p>
+                  <p>Sat: 9:30 AM - 4:30 PM</p>
+                  <p>Mon & Sun: Closed</p>
                 </div>
               </div>
             </div>
@@ -95,7 +97,7 @@ const Contact = () => {
             {/* Social Media */}
             <div className="pt-4">
               <p className="text-sm text-muted-foreground uppercase tracking-wider mb-4 font-body">
-                Theo Dõi Chúng Tôi
+                Follow us
               </p>
               <div className="flex gap-4">
                 <a
@@ -110,6 +112,23 @@ const Contact = () => {
                 >
                   <Facebook className="w-5 h-5" />
                 </a>
+              </div>
+            </div>
+
+            {/* QR Code */}
+            <div className="bg-secondary/40 border border-border p-6">
+              <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground font-body">
+                Instagram QR
+              </p>
+              <div className="mt-4 flex items-center gap-6">
+                <img
+                  src="/QR%20Code_Willow%20Hair%20Salon_Instagram/design%20(1).png"
+                  alt="QR Instagram"
+                  className="w-24 h-24 object-contain bg-white p-2"
+                />
+                <p className="text-sm text-muted-foreground font-body">
+                  Scan for the latest looks and offers.
+                </p>
               </div>
             </div>
           </motion.div>

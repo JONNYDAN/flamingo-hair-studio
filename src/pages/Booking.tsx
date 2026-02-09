@@ -37,12 +37,12 @@ import { toast } from "@/components/ui/sonner";
 import { supabase } from "@/integrations/supabase/client";
 
 const services = [
-  { id: "cat-toc", name: "Cắt Tóc", price: "150.000đ - 300.000đ" },
-  { id: "nhuom-toc", name: "Nhuộm Tóc", price: "500.000đ - 2.000.000đ" },
-  { id: "uon-toc", name: "Uốn Tóc", price: "800.000đ - 1.500.000đ" },
-  { id: "duoi-toc", name: "Duỗi Tóc", price: "700.000đ - 1.200.000đ" },
-  { id: "phuc-hoi", name: "Phục Hồi Tóc", price: "400.000đ - 800.000đ" },
-  { id: "goi-massage", name: "Gội Massage", price: "100.000đ - 200.000đ" },
+  { id: "cat-toc", name: "Haircut", price: "150.000đ - 300.000đ" },
+  { id: "nhuom-toc", name: "Color", price: "500.000đ - 2.000.000đ" },
+  { id: "uon-toc", name: "Perm", price: "800.000đ - 1.500.000đ" },
+  { id: "duoi-toc", name: "Straightening", price: "700.000đ - 1.200.000đ" },
+  { id: "phuc-hoi", name: "Treatment", price: "400.000đ - 800.000đ" },
+  { id: "goi-massage", name: "Scalp Care", price: "100.000đ - 200.000đ" },
 ];
 
 const timeSlots = [
@@ -52,15 +52,15 @@ const timeSlots = [
 ];
 
 const formSchema = z.object({
-  name: z.string().min(2, "Tên phải có ít nhất 2 ký tự").max(100, "Tên quá dài"),
+  name: z.string().min(2, "Name must be at least 2 characters").max(100, "Name is too long"),
   phone: z.string()
-    .min(10, "Số điện thoại không hợp lệ")
-    .max(15, "Số điện thoại không hợp lệ")
-    .regex(/^[0-9+]+$/, "Số điện thoại chỉ được chứa số"),
-  service: z.string().min(1, "Vui lòng chọn dịch vụ"),
-  date: z.date({ required_error: "Vui lòng chọn ngày" }),
-  time: z.string().min(1, "Vui lòng chọn giờ"),
-  note: z.string().max(500, "Ghi chú quá dài").optional(),
+    .min(10, "Invalid phone number")
+    .max(15, "Invalid phone number")
+    .regex(/^[0-9+]+$/, "Phone number must contain digits only"),
+  service: z.string().min(1, "Please select a service"),
+  date: z.date({ required_error: "Please select a date" }),
+  time: z.string().min(1, "Please select a time"),
+  note: z.string().max(500, "Note is too long").optional(),
 });
 
 type FormData = z.infer<typeof formSchema>;
@@ -97,16 +97,16 @@ const Booking = () => {
         throw error;
       }
       
-      toast.success("Đặt lịch thành công!", {
-        description: "Chúng tôi sẽ liên hệ xác nhận trong thời gian sớm nhất.",
+      toast.success("Booking confirmed!", {
+        description: "We will contact you shortly to confirm.",
       });
       
       form.reset();
       setSelectedService(null);
     } catch (error) {
       console.error('Booking error:', error);
-      toast.error("Có lỗi xảy ra", {
-        description: "Vui lòng thử lại sau hoặc liên hệ trực tiếp với chúng tôi.",
+      toast.error("Something went wrong", {
+        description: "Please try again later or contact us directly.",
       });
     } finally {
       setIsSubmitting(false);
@@ -118,11 +118,11 @@ const Booking = () => {
       <Navigation />
       
       {/* Hero Section */}
-      <section className="relative h-[40vh] min-h-[300px] flex items-center justify-center overflow-hidden">
+      <section className="relative h-[45vh] min-h-[360px] flex items-center justify-center overflow-hidden">
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1633681926022-84c23e8cb2d6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')`,
+            backgroundImage: `linear-gradient(120deg, rgba(18,12,8,0.75), rgba(18,12,8,0.3)), url('https://images.unsplash.com/photo-1633681926022-84c23e8cb2d6?auto=format&fit=crop&w=2000&q=80')`,
           }}
         />
         <div className="relative z-10 text-center text-white px-4">
@@ -130,9 +130,9 @@ const Booking = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-gold-light tracking-[0.3em] uppercase text-sm mb-4 font-body"
+            className="text-gold-light tracking-[0.35em] uppercase text-sm mb-4 font-body"
           >
-            Đặt Lịch
+            Booking
           </motion.p>
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
@@ -140,27 +140,75 @@ const Booking = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="font-display text-4xl md:text-6xl font-light"
           >
-            Đặt Lịch Hẹn
+                Book an appointment
           </motion.h1>
         </div>
       </section>
 
       {/* Booking Form */}
-      <section className="py-16 md:py-24">
-        <div className="container max-w-4xl mx-auto px-4">
+      <section className="py-20 md:py-28">
+        <div className="container max-w-6xl mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-12">
+            <div className="grid lg:grid-cols-[0.9fr_1.1fr] gap-12 items-start">
+              <aside className="space-y-8">
+                <div className="border border-border bg-background/80 p-8">
+                  <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground font-body">
+                    Booking
+                  </p>
+                  <h2 className="font-display text-3xl text-foreground mt-4">
+                    Personalized booking
+                  </h2>
+                  <p className="text-sm text-muted-foreground font-body mt-4 leading-relaxed">
+                    Please book ahead for the best experience. If you need quick advice,
+                    contact us directly.
+                  </p>
+                  <div className="mt-6 text-sm text-foreground font-body">
+                    +1 (408) 978-1499
+                    <span className="block text-xs text-muted-foreground mt-2">
+                      Tue - Fri: 9:30 AM - 6:00 PM
+                      <br />
+                      Sat: 9:30 AM - 4:30 PM
+                      <br />
+                      Mon & Sun: Closed
+                    </span>
+                  </div>
+                </div>
+
+                <div className="bg-charcoal text-white p-8">
+                  <p className="text-xs uppercase tracking-[0.3em] text-gold-light font-body">
+                    Instagram
+                  </p>
+                  <img
+                    src="/QR%20Code_Willow%20Hair%20Salon_Instagram/design%20(1).png"
+                    alt="QR Instagram"
+                    className="mt-6 w-28 h-28 object-contain bg-white p-2"
+                  />
+                  <p className="text-sm text-white/70 font-body mt-4">
+                    Scan the QR for the latest looks.
+                  </p>
+                </div>
+
+                <img
+                  src="/BusinessCard_WillowGlenHairSalon/front_fullcolor_1024x599.png"
+                  alt="Business card"
+                  className="w-full max-w-[280px]"
+                />
+              </aside>
+
+              <Form {...form}>
+                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-12">
                 
                 {/* Step 1: Choose Service */}
                 <div>
                   <div className="text-center mb-8">
                     <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-accent text-accent-foreground font-body text-sm mb-4">1</span>
-                    <h2 className="font-display text-2xl md:text-3xl text-foreground">Chọn Dịch Vụ</h2>
+                    <h2 className="font-display text-2xl md:text-3xl text-foreground">
+                      Choose a service
+                    </h2>
                   </div>
                   
                   <FormField
@@ -210,7 +258,9 @@ const Booking = () => {
                 <div>
                   <div className="text-center mb-8">
                     <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-accent text-accent-foreground font-body text-sm mb-4">2</span>
-                    <h2 className="font-display text-2xl md:text-3xl text-foreground">Chọn Ngày & Giờ</h2>
+                    <h2 className="font-display text-2xl md:text-3xl text-foreground">
+                      Select date & time
+                    </h2>
                   </div>
                   
                   <div className="grid md:grid-cols-2 gap-6">
@@ -222,7 +272,7 @@ const Booking = () => {
                         <FormItem className="flex flex-col">
                           <FormLabel className="text-foreground font-body flex items-center gap-2 mb-2">
                             <CalendarIcon className="w-4 h-4 text-accent" />
-                            Ngày
+                            Date
                           </FormLabel>
                           <Popover>
                             <PopoverTrigger asChild>
@@ -237,7 +287,7 @@ const Booking = () => {
                                   {field.value ? (
                                     format(field.value, "PPP", { locale: vi })
                                   ) : (
-                                    <span>Chọn ngày</span>
+                                    <span>Select date</span>
                                   )}
                                 </Button>
                               </FormControl>
@@ -267,12 +317,12 @@ const Booking = () => {
                         <FormItem>
                           <FormLabel className="text-foreground font-body flex items-center gap-2 mb-2">
                             <Clock className="w-4 h-4 text-accent" />
-                            Giờ
+                            Time
                           </FormLabel>
                           <Select onValueChange={field.onChange} defaultValue={field.value}>
                             <FormControl>
                               <SelectTrigger className="h-12">
-                                <SelectValue placeholder="Chọn giờ" />
+                                <SelectValue placeholder="Select time" />
                               </SelectTrigger>
                             </FormControl>
                             <SelectContent>
@@ -294,7 +344,9 @@ const Booking = () => {
                 <div>
                   <div className="text-center mb-8">
                     <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-accent text-accent-foreground font-body text-sm mb-4">3</span>
-                    <h2 className="font-display text-2xl md:text-3xl text-foreground">Thông Tin Của Bạn</h2>
+                    <h2 className="font-display text-2xl md:text-3xl text-foreground">
+                      Your details
+                    </h2>
                   </div>
                   
                   <div className="space-y-6">
@@ -307,11 +359,11 @@ const Booking = () => {
                           <FormItem>
                             <FormLabel className="text-foreground font-body flex items-center gap-2">
                               <User className="w-4 h-4 text-accent" />
-                              Họ và Tên
+                              Full name
                             </FormLabel>
                             <FormControl>
                               <Input
-                                placeholder="Nhập họ và tên"
+                                placeholder="Full name"
                                 className="h-12"
                                 {...field}
                               />
@@ -329,11 +381,11 @@ const Booking = () => {
                           <FormItem>
                             <FormLabel className="text-foreground font-body flex items-center gap-2">
                               <Phone className="w-4 h-4 text-accent" />
-                              Số Điện Thoại
+                              Phone number
                             </FormLabel>
                             <FormControl>
                               <Input
-                                placeholder="0901234567"
+                                placeholder="+1 (408) 978-1499"
                                 className="h-12"
                                 {...field}
                               />
@@ -352,11 +404,11 @@ const Booking = () => {
                         <FormItem>
                           <FormLabel className="text-foreground font-body flex items-center gap-2">
                             <MessageSquare className="w-4 h-4 text-accent" />
-                            Ghi Chú (tùy chọn)
+                            Note (optional)
                           </FormLabel>
                           <FormControl>
                             <Textarea
-                              placeholder="Yêu cầu đặc biệt, mô tả kiểu tóc mong muốn..."
+                              placeholder="Special requests, preferred style..."
                               className="min-h-[120px] resize-none"
                               {...field}
                             />
@@ -376,11 +428,12 @@ const Booking = () => {
                     size="lg"
                     className="bg-accent hover:bg-accent/90 text-accent-foreground px-12 py-6 text-sm tracking-[0.2em] uppercase font-body transition-all duration-300"
                   >
-                    {isSubmitting ? "Đang gửi..." : "Xác Nhận Đặt Lịch"}
+                    {isSubmitting ? "Sending..." : "Confirm booking"}
                   </Button>
                 </div>
-              </form>
-            </Form>
+                </form>
+              </Form>
+            </div>
           </motion.div>
         </div>
       </section>

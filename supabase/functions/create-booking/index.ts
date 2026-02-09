@@ -73,7 +73,20 @@ serve(async (req) => {
     const twilioAccountSid = Deno.env.get('TWILIO_ACCOUNT_SID');
     const twilioAuthToken = Deno.env.get('TWILIO_AUTH_TOKEN');
     const twilioPhoneNumber = Deno.env.get('TWILIO_PHONE_NUMBER');
-    const ownerPhoneNumber = Deno.env.get('OWNER_PHONE_NUMBER');
+    const normalizePhone = (value: string) => {
+      const trimmed = value.trim();
+      if (trimmed.startsWith("+")) {
+        return trimmed;
+      }
+      if (trimmed.startsWith("0")) {
+        return `+84${trimmed.slice(1)}`;
+      }
+      return trimmed;
+    };
+
+    const ownerPhoneNumber = Deno.env.get('OWNER_PHONE_NUMBER')
+      ? normalizePhone(Deno.env.get('OWNER_PHONE_NUMBER')!)
+      : normalizePhone("0905193358");
 
     if (twilioAccountSid && twilioAuthToken && twilioPhoneNumber && ownerPhoneNumber) {
       try {

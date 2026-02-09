@@ -7,22 +7,22 @@ const galleryImages = [
   {
     id: 1,
     src: "https://images.unsplash.com/photo-1605497788044-5a32c7078486?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    alt: "Kiểu tóc nữ xoăn nhẹ",
+    alt: "Soft curls",
   },
   {
     id: 2,
     src: "https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    alt: "Kiểu tóc nam hiện đại",
+    alt: "Modern men's cut",
   },
   {
     id: 3,
     src: "https://images.unsplash.com/photo-1554519515-242161756769?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    alt: "Nhuộm tóc thời trang",
+    alt: "Fashion color",
   },
   {
     id: 4,
     src: "https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    alt: "Tóc ngắn cá tính",
+    alt: "Chic short hair",
   },
 ];
 
@@ -42,16 +42,16 @@ const Gallery = () => {
           className="text-center mb-20"
           ref={ref}
         >
-          <p className="font-body text-xs uppercase tracking-[0.3em] text-muted-foreground mb-6">
+          <p className="font-body text-xs uppercase tracking-[0.35em] text-muted-foreground mb-6">
             Gallery
           </p>
           <h2 className="font-display text-4xl md:text-5xl font-light text-foreground">
-            Tác Phẩm
+            Style portfolio
           </h2>
         </motion.div>
 
-        {/* Gallery Grid - 2x2 minimal */}
-        <div className="grid grid-cols-2 gap-4 md:gap-6">
+        {/* Gallery Grid */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
           {galleryImages.map((image, index) => (
             <motion.div
               key={image.id}
@@ -61,12 +61,13 @@ const Gallery = () => {
               className="group cursor-pointer"
               onClick={() => setSelectedImage(image.src)}
             >
-              <div className="aspect-square overflow-hidden">
+              <div className="aspect-[3/4] overflow-hidden relative">
                 <img
                   src={image.src}
                   alt={image.alt}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors" />
               </div>
             </motion.div>
           ))}

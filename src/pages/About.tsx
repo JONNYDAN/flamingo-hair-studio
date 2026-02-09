@@ -8,11 +8,11 @@ const About = () => {
       <Navigation />
       
       {/* Hero Section */}
-      <section className="relative h-[50vh] min-h-[400px] flex items-center justify-center overflow-hidden">
+      <section className="relative h-[55vh] min-h-[420px] flex items-center overflow-hidden">
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')`,
+            backgroundImage: `linear-gradient(120deg, rgba(18,12,8,0.75), rgba(18,12,8,0.3)), url('https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=2000&q=80')`,
           }}
         />
         <div className="relative z-10 text-center text-white px-4">
@@ -20,9 +20,9 @@ const About = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-gold-light tracking-[0.3em] uppercase text-sm mb-4 font-body"
+            className="text-gold-light tracking-[0.35em] uppercase text-sm mb-4 font-body"
           >
-            Về Chúng Tôi
+            About
           </motion.p>
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
@@ -30,7 +30,7 @@ const About = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="font-display text-4xl md:text-6xl font-light"
           >
-            Câu Chuyện Của Chúng Tôi
+              Our story
           </motion.h1>
         </div>
       </section>
@@ -49,7 +49,7 @@ const About = () => {
             >
               <div className="aspect-[4/5] overflow-hidden">
                 <img
-                  src="https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                  src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=900&q=80"
                   alt="Salon interior"
                   className="w-full h-full object-cover"
                 />
@@ -64,28 +64,28 @@ const About = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <p className="text-accent tracking-[0.3em] uppercase text-sm mb-4 font-body">
-                Sứ Mệnh
+              <p className="text-accent tracking-[0.35em] uppercase text-sm mb-4 font-body">
+                Mission
               </p>
               <h2 className="font-display text-4xl md:text-5xl font-light mb-8 text-foreground">
-                Nghệ Thuật & Đam Mê
+                Artistry & passion
               </h2>
               <div className="space-y-6 text-muted-foreground font-body leading-relaxed">
                 <p>
-                  Với hơn 10 năm kinh nghiệm trong ngành làm đẹp, Hair Studio tự hào 
-                  mang đến những dịch vụ chăm sóc tóc chất lượng cao nhất. Chúng tôi 
-                  tin rằng mỗi mái tóc đều là một tác phẩm nghệ thuật.
+                  With over 10 years of beauty expertise, we deliver refined, personalized services.
                 </p>
                 <p>
-                  Đội ngũ stylist của chúng tôi được đào tạo bài bản, luôn cập nhật 
-                  những xu hướng mới nhất và sử dụng các sản phẩm cao cấp để đảm bảo 
-                  kết quả tốt nhất cho khách hàng.
+                  Our stylists stay ahead of trends and pair global technique with premium products.
                 </p>
                 <p>
-                  Tại Hair Studio, chúng tôi không chỉ làm tóc - chúng tôi tạo nên 
-                  phong cách và sự tự tin cho bạn.
+                  We do more than hair. We craft confidence and personal style.
                 </p>
               </div>
+              <img
+                src="/BusinessCard_WillowGlenHairSalon/front_fullcolor_1024x599.png"
+                alt="Business card"
+                className="mt-8 w-full max-w-[260px]"
+              />
             </motion.div>
           </div>
         </div>
@@ -101,27 +101,27 @@ const About = () => {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <p className="text-accent tracking-[0.3em] uppercase text-sm mb-4 font-body">
-              Giá Trị Cốt Lõi
+            <p className="text-accent tracking-[0.35em] uppercase text-sm mb-4 font-body">
+              Core values
             </p>
             <h2 className="font-display text-4xl md:text-5xl font-light text-foreground">
-              Điều Chúng Tôi Tin Tưởng
+              What we believe in
             </h2>
           </motion.div>
 
           <div className="grid md:grid-cols-3 gap-12">
             {[
               {
-                title: "Chất Lượng",
-                description: "Chúng tôi chỉ sử dụng những sản phẩm tốt nhất từ các thương hiệu uy tín toàn cầu.",
+                title: "Quality",
+                description: "We use only trusted premium brands.",
               },
               {
-                title: "Sáng Tạo",
-                description: "Mỗi khách hàng là một cá nhân độc đáo, xứng đáng có một phong cách riêng biệt.",
+                title: "Creativity",
+                description: "Every client has a unique style.",
               },
               {
-                title: "Tận Tâm",
-                description: "Sự hài lòng của khách hàng là thước đo thành công của chúng tôi.",
+                title: "Care",
+                description: "Your satisfaction defines our success.",
               },
             ].map((value, index) => (
               <motion.div
@@ -132,7 +132,9 @@ const About = () => {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="text-center"
               >
-                <h3 className="font-display text-2xl mb-4 text-foreground">{value.title}</h3>
+                <h3 className="font-display text-2xl mb-4 text-foreground">
+                  {value.title}
+                </h3>
                 <p className="text-muted-foreground font-body leading-relaxed">
                   {value.description}
                 </p>
@@ -147,9 +149,9 @@ const About = () => {
         <div className="container max-w-4xl mx-auto px-4">
           <div className="grid grid-cols-3 gap-8">
             {[
-              { number: "10+", label: "Năm Kinh Nghiệm" },
-              { number: "5000+", label: "Khách Hàng" },
-              { number: "15+", label: "Stylist Chuyên Nghiệp" },
+              { number: "10+", label: "Years of experience" },
+              { number: "5000+", label: "Clients" },
+              { number: "15+", label: "Professional stylists" },
             ].map((stat, index) => (
               <motion.div
                 key={stat.label}

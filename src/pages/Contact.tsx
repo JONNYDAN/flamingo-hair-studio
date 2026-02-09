@@ -9,11 +9,11 @@ const Contact = () => {
       <Navigation />
       
       {/* Hero Section */}
-      <section className="relative h-[50vh] min-h-[400px] flex items-center justify-center overflow-hidden">
+      <section className="relative h-[55vh] min-h-[420px] flex items-center justify-center overflow-hidden">
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')`,
+            backgroundImage: `linear-gradient(120deg, rgba(18,12,8,0.75), rgba(18,12,8,0.3)), url('https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&w=2000&q=80')`,
           }}
         />
         <div className="relative z-10 text-center text-white px-4">
@@ -21,9 +21,9 @@ const Contact = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-gold-light tracking-[0.3em] uppercase text-sm mb-4 font-body"
+            className="text-gold-light tracking-[0.35em] uppercase text-sm mb-4 font-body"
           >
-            Liên Hệ
+            Contact
           </motion.p>
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
@@ -31,7 +31,7 @@ const Contact = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="font-display text-4xl md:text-6xl font-light"
           >
-            Ghé Thăm Chúng Tôi
+              Visit the salon
           </motion.h1>
         </div>
       </section>
@@ -54,10 +54,11 @@ const Contact = () => {
                   <MapPin className="w-5 h-5 text-accent" />
                 </div>
                 <div>
-                  <h3 className="font-display text-xl mb-2 text-foreground">Địa Chỉ</h3>
+                  <h3 className="font-display text-xl mb-2 text-foreground">Address</h3>
                   <p className="text-muted-foreground font-body">
-                    123 Đường Nguyễn Huệ, Quận 1<br />
-                    TP. Hồ Chí Minh
+                    2306 Almaden Rd
+                    <br />
+                    San Jose, CA 95125
                   </p>
                 </div>
               </div>
@@ -68,10 +69,10 @@ const Contact = () => {
                   <Phone className="w-5 h-5 text-accent" />
                 </div>
                 <div>
-                  <h3 className="font-display text-xl mb-2 text-foreground">Điện Thoại</h3>
+                  <h3 className="font-display text-xl mb-2 text-foreground">Phone</h3>
                   <p className="text-muted-foreground font-body">
-                    <a href="tel:0901234567" className="hover:text-accent transition-colors">
-                      090 123 4567
+                    <a href="tel:+14089781499" className="hover:text-accent transition-colors">
+                      +1 (408) 978-1499
                     </a>
                   </p>
                 </div>
@@ -98,10 +99,11 @@ const Contact = () => {
                   <Clock className="w-5 h-5 text-accent" />
                 </div>
                 <div>
-                  <h3 className="font-display text-xl mb-2 text-foreground">Giờ Mở Cửa</h3>
+                  <h3 className="font-display text-xl mb-2 text-foreground">Hours</h3>
                   <div className="text-muted-foreground font-body space-y-1">
-                    <p>Thứ 2 - Thứ 6: 9:00 - 19:00</p>
-                    <p>Thứ 7 - Chủ Nhật: 9:00 - 18:00</p>
+                    <p>Tue - Fri: 9:30 AM - 6:00 PM</p>
+                    <p>Sat: 9:30 AM - 4:30 PM</p>
+                    <p>Mon & Sun: Closed</p>
                   </div>
                 </div>
               </div>
@@ -109,7 +111,7 @@ const Contact = () => {
               {/* Social Media */}
               <div className="pt-4">
                 <p className="text-sm text-muted-foreground uppercase tracking-wider mb-4 font-body">
-                  Theo Dõi Chúng Tôi
+                  Follow us
                 </p>
                 <div className="flex gap-4">
                   <a
@@ -124,6 +126,22 @@ const Contact = () => {
                   >
                     <Facebook className="w-5 h-5" />
                   </a>
+                </div>
+              </div>
+
+              <div className="bg-secondary/40 border border-border p-6">
+                <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground font-body">
+                  Instagram QR
+                </p>
+                <div className="mt-4 flex items-center gap-6">
+                  <img
+                    src="/QR%20Code_Willow%20Hair%20Salon_Instagram/design%20(1).png"
+                    alt="QR Instagram"
+                    className="w-24 h-24 object-contain bg-white p-2"
+                  />
+                  <p className="text-sm text-muted-foreground font-body">
+                    Scan for the latest looks and offers.
+                  </p>
                 </div>
               </div>
             </motion.div>

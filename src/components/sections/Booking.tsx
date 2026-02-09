@@ -36,12 +36,12 @@ import { toast } from "@/components/ui/sonner";
 import { supabase } from "@/integrations/supabase/client";
 
 const services = [
-  "Cắt Tóc",
-  "Nhuộm Tóc",
-  "Uốn Tóc",
-  "Duỗi Tóc",
-  "Phục Hồi Tóc",
-  "Gội Massage",
+  "Haircut",
+  "Color",
+  "Perm",
+  "Straightening",
+  "Treatment",
+  "Scalp Care",
 ];
 
 const timeSlots = [
@@ -51,15 +51,15 @@ const timeSlots = [
 ];
 
 const formSchema = z.object({
-  name: z.string().min(2, "Tên phải có ít nhất 2 ký tự").max(100, "Tên quá dài"),
+  name: z.string().min(2, "Name must be at least 2 characters").max(100, "Name is too long"),
   phone: z.string()
-    .min(10, "Số điện thoại không hợp lệ")
-    .max(15, "Số điện thoại không hợp lệ")
-    .regex(/^[0-9+]+$/, "Số điện thoại chỉ được chứa số"),
-  service: z.string().min(1, "Vui lòng chọn dịch vụ"),
-  date: z.date({ required_error: "Vui lòng chọn ngày" }),
-  time: z.string().min(1, "Vui lòng chọn giờ"),
-  note: z.string().max(500, "Ghi chú quá dài").optional(),
+    .min(10, "Invalid phone number")
+    .max(15, "Invalid phone number")
+    .regex(/^[0-9+]+$/, "Phone number must contain digits only"),
+  service: z.string().min(1, "Please select a service"),
+  date: z.date({ required_error: "Please select a date" }),
+  time: z.string().min(1, "Please select a time"),
+  note: z.string().max(500, "Note is too long").optional(),
 });
 
 type FormData = z.infer<typeof formSchema>;
@@ -97,15 +97,15 @@ const Booking = () => {
         throw error;
       }
       
-      toast.success("Đặt lịch thành công!", {
-        description: "Chúng tôi sẽ liên hệ xác nhận trong thời gian sớm nhất.",
+      toast.success("Booking confirmed!", {
+        description: "We will contact you shortly to confirm.",
       });
       
       form.reset();
     } catch (error) {
       console.error('Booking error:', error);
-      toast.error("Có lỗi xảy ra", {
-        description: "Vui lòng thử lại sau hoặc liên hệ trực tiếp với chúng tôi.",
+      toast.error("Something went wrong", {
+        description: "Please try again later or contact us directly.",
       });
     } finally {
       setIsSubmitting(false);
@@ -124,14 +124,13 @@ const Booking = () => {
           ref={ref}
         >
           <p className="text-gold-light tracking-[0.3em] uppercase text-sm mb-4 font-body">
-            Đặt Lịch
+            Booking
           </p>
           <h2 className="font-display text-4xl md:text-5xl font-light">
-            Đặt Lịch Hẹn Ngay
+            Book your appointment
           </h2>
           <p className="text-white/60 mt-6 max-w-xl mx-auto font-body">
-            Điền thông tin bên dưới để đặt lịch. Chúng tôi sẽ liên hệ xác nhận 
-            trong thời gian sớm nhất.
+            Fill in the details below to book. We will contact you shortly to confirm.
           </p>
         </motion.div>
 
@@ -152,11 +151,11 @@ const Booking = () => {
                     <FormItem>
                       <FormLabel className="text-white/80 font-body flex items-center gap-2">
                         <User className="w-4 h-4" />
-                        Họ và Tên
+                        Full name
                       </FormLabel>
                       <FormControl>
                         <Input
-                          placeholder="Nhập họ và tên"
+                          placeholder="Full name"
                           {...field}
                           className="bg-white/10 border-white/20 text-white placeholder:text-white/40 focus:border-gold-light"
                         />
@@ -174,11 +173,11 @@ const Booking = () => {
                     <FormItem>
                       <FormLabel className="text-white/80 font-body flex items-center gap-2">
                         <Phone className="w-4 h-4" />
-                        Số Điện Thoại
+                        Phone number
                       </FormLabel>
                       <FormControl>
                         <Input
-                          placeholder="0901234567"
+                          placeholder="+1 (408) 978-1499"
                           {...field}
                           className="bg-white/10 border-white/20 text-white placeholder:text-white/40 focus:border-gold-light"
                         />
@@ -195,12 +194,12 @@ const Booking = () => {
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel className="text-white/80 font-body">
-                        Dịch Vụ
+                        Service
                       </FormLabel>
                       <Select onValueChange={field.onChange} defaultValue={field.value}>
                         <FormControl>
                           <SelectTrigger className="bg-white/10 border-white/20 text-white focus:border-gold-light">
-                            <SelectValue placeholder="Chọn dịch vụ" />
+                            <SelectValue placeholder="Select a service" />
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
@@ -224,7 +223,7 @@ const Booking = () => {
                     <FormItem className="flex flex-col">
                       <FormLabel className="text-white/80 font-body flex items-center gap-2">
                         <CalendarIcon className="w-4 h-4" />
-                        Ngày
+                        Date
                       </FormLabel>
                       <Popover>
                         <PopoverTrigger asChild>
@@ -239,7 +238,7 @@ const Booking = () => {
                               {field.value ? (
                                 format(field.value, "PPP", { locale: vi })
                               ) : (
-                                <span>Chọn ngày</span>
+                                <span>Select date</span>
                               )}
                             </Button>
                           </FormControl>
@@ -269,12 +268,12 @@ const Booking = () => {
                     <FormItem>
                       <FormLabel className="text-white/80 font-body flex items-center gap-2">
                         <Clock className="w-4 h-4" />
-                        Giờ
+                        Time
                       </FormLabel>
                       <Select onValueChange={field.onChange} defaultValue={field.value}>
                         <FormControl>
                           <SelectTrigger className="bg-white/10 border-white/20 text-white focus:border-gold-light">
-                            <SelectValue placeholder="Chọn giờ" />
+                            <SelectValue placeholder="Select time" />
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
@@ -299,11 +298,11 @@ const Booking = () => {
                   <FormItem>
                     <FormLabel className="text-white/80 font-body flex items-center gap-2">
                       <MessageSquare className="w-4 h-4" />
-                      Ghi Chú (tùy chọn)
+                      Note (optional)
                     </FormLabel>
                     <FormControl>
                       <Textarea
-                        placeholder="Yêu cầu đặc biệt, mô tả kiểu tóc mong muốn..."
+                        placeholder="Special requests, preferred style..."
                         {...field}
                         className="bg-white/10 border-white/20 text-white placeholder:text-white/40 focus:border-gold-light min-h-[100px]"
                       />
@@ -321,7 +320,7 @@ const Booking = () => {
                   size="lg"
                   className="bg-gold hover:bg-gold-light text-charcoal px-12 py-6 text-sm tracking-[0.2em] uppercase font-body transition-all duration-300"
                 >
-                  {isSubmitting ? "Đang gửi..." : "Xác Nhận Đặt Lịch"}
+                  {isSubmitting ? "Sending..." : "Confirm booking"}
                 </Button>
               </div>
             </form>

@@ -1,14 +1,8 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
 const Hero = () => {
-  const scrollToBooking = () => {
-    const bookingSection = document.getElementById("booking");
-    if (bookingSection) {
-      bookingSection.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image */}
@@ -55,11 +49,11 @@ const Hero = () => {
           transition={{ duration: 0.8, delay: 0.8 }}
         >
           <Button
-            onClick={scrollToBooking}
+            asChild
             size="lg"
             className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-charcoal transition-all duration-300 px-10 py-6 text-sm tracking-[0.2em] uppercase font-body"
           >
-            Đặt Lịch Ngay
+            <Link to="/booking">Đặt Lịch Ngay</Link>
           </Button>
         </motion.div>
       </div>

@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Footer = () => {
   return (
     <footer className="py-8 bg-charcoal text-white/60">
@@ -7,12 +9,15 @@ const Footer = () => {
             © {new Date().getFullYear()} Hair Studio. All rights reserved.
           </p>
           <div className="flex gap-6">
-            <a href="#" className="text-sm hover:text-white transition-colors font-body">
-              Chính Sách Bảo Mật
-            </a>
-            <a href="#" className="text-sm hover:text-white transition-colors font-body">
-              Điều Khoản Sử Dụng
-            </a>
+            <Link to="/about" className="text-sm hover:text-white transition-colors font-body">
+              About
+            </Link>
+            <Link to="/contact" className="text-sm hover:text-white transition-colors font-body">
+              Contact
+            </Link>
+            <Link to="/booking" className="text-sm hover:text-white transition-colors font-body">
+              Booking
+            </Link>
           </div>
         </div>
       </div>

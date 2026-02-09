@@ -33,7 +33,6 @@ import {
 } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
 import { toast } from "@/components/ui/sonner";
-import { supabase } from "@/integrations/supabase/client";
 
 const services = [
   "Haircut",
@@ -64,6 +63,27 @@ const formSchema = z.object({
 
 type FormData = z.infer<typeof formSchema>;
 
+const OWNER_PHONE_NUMBER = "+14089781499";
+
+const buildSmsMessage = (data: FormData) => {
+  const noteLine = data.note?.trim() ? `Note: ${data.note.trim()}` : "";
+
+  return [
+    "NEW BOOKING",
+    `Client: ${data.name}`,
+    `Phone: ${data.phone}`,
+    `Service: ${data.service}`,
+    `Date: ${format(data.date, "yyyy-MM-dd")}`,
+    `Time: ${data.time}`,
+    noteLine,
+  ]
+    .filter(Boolean)
+    .join("\n");
+};
+
+const buildSmsLink = (message: string) =>
+  `sms:${OWNER_PHONE_NUMBER}?body=${encodeURIComponent(message)}`;
+
 const Booking = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
@@ -82,30 +102,19 @@ const Booking = () => {
   const onSubmit = async (data: FormData) => {
     setIsSubmitting(true);
     try {
-      const { data: response, error } = await supabase.functions.invoke('create-booking', {
-        body: {
-          customer_name: data.name,
-          customer_phone: data.phone,
-          service: data.service,
-          booking_date: format(data.date, 'yyyy-MM-dd'),
-          booking_time: data.time,
-          note: data.note || null,
-        },
+      const smsMessage = buildSmsMessage(data);
+      const smsLink = buildSmsLink(smsMessage);
+      window.location.href = smsLink;
+
+      toast.success("SMS ready to send", {
+        description: "Your SMS app is opened with the booking details.",
       });
 
-      if (error) {
-        throw error;
-      }
-      
-      toast.success("Booking confirmed!", {
-        description: "We will contact you shortly to confirm.",
-      });
-      
       form.reset();
     } catch (error) {
       console.error('Booking error:', error);
       toast.error("Something went wrong", {
-        description: "Please try again later or contact us directly.",
+        description: "Please try again or text us directly.",
       });
     } finally {
       setIsSubmitting(false);
@@ -130,7 +139,8 @@ const Booking = () => {
             Book your appointment
           </h2>
           <p className="text-white/60 mt-6 max-w-xl mx-auto font-body">
-            Fill in the details below to book. We will contact you shortly to confirm.
+            Fill in the details below to book. Your SMS app will open with the details
+            ready to send.
           </p>
         </motion.div>
 
@@ -320,7 +330,7 @@ const Booking = () => {
                   size="lg"
                   className="bg-gold hover:bg-gold-light text-charcoal px-12 py-6 text-sm tracking-[0.2em] uppercase font-body transition-all duration-300"
                 >
-                  {isSubmitting ? "Sending..." : "Confirm booking"}
+                  {isSubmitting ? "Opening..." : "Open SMS"}
                 </Button>
               </div>
             </form>

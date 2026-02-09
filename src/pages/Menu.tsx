@@ -5,41 +5,57 @@ import Footer from "@/components/sections/Footer";
 
 const menuGroups = [
   {
-    title: "Cut & Style",
     subtitle: "Haircut & finishing",
     items: [
-      { name: "Signature Cut", detail: "Consultation, cut, and finish", price: "350k - 600k" },
-      { name: "Short Cut", detail: "Short shaping", price: "280k - 450k" },
-      { name: "Blowout", detail: "Volume finish", price: "200k - 350k" },
+      {
+        name: "Men's Haircut",
+        detail: "Precision cut tailored to style",
+        price: "$29",
+      },
+      {
+        name: "Women's Haircut",
+        detail: "Customized cut designed for your face shape",
+        price: "$35 & up",
+      },
+      {
+        name: "Senior's Haircut",
+        detail: "Comfortable, easy-to-maintain styles",
+        price: "$26 & up",
+      },
+      {
+        name: "Kid's Haircut",
+        detail: "Gentle haircut in a friendly environment",
+        price: "$26",
+      },
+      {
+        name: "Color",
+        detail: "Customized color for natural & vibrant results",
+        price: "$65 & up",
+      },
+      {
+        name: "Hilite",
+        detail: "Soft dimension and natural brightness",
+        price: "$85 & up",
+      },
     ],
   },
   {
-    title: "Color",
-    subtitle: "Color & dimension",
+    subtitle: "Brow & Lash Services",
     items: [
-      { name: "Full Color", detail: "Full coverage", price: "900k - 2.200k" },
-      { name: "Balayage", detail: "Soft transitions", price: "1.500k - 3.200k" },
-      { name: "Highlights", detail: "Light accents", price: "1.200k - 2.800k" },
+      { name: "Powder Shading Brow & Microblading",
+        detail: "Soft ombre + hair-stroke technique",
+        price: "$450" },
+      {
+        name: "Microblading",
+        detail: "Natural hair-like strokes",
+        price: "$350",
+      },
+      { name: "Eyelash Extensions",
+        detail: "Classic - Hybrid - Volume",
+        price: "$130 & up" },
     ],
   },
-  {
-    title: "Texture",
-    subtitle: "Curl & straight",
-    items: [
-      { name: "Soft Perm", detail: "Soft waves", price: "1.000k - 1.800k" },
-      { name: "Digital Perm", detail: "Korean digital perm", price: "1.400k - 2.500k" },
-      { name: "Keratin Straight", detail: "Repair straight", price: "1.200k - 2.200k" },
-    ],
-  },
-  {
-    title: "Treatment",
-    subtitle: "Deep care",
-    items: [
-      { name: "Scalp Care", detail: "Scalp balance", price: "350k - 600k" },
-      { name: "Moisture Repair", detail: "Moisture restore", price: "500k - 900k" },
-      { name: "Premium Mask", detail: "Premium mask", price: "650k - 1.200k" },
-    ],
-  },
+
 ];
 
 const Menu = () => {
@@ -70,9 +86,9 @@ const Menu = () => {
             transition={{ duration: 0.9, delay: 0.1 }}
             className="font-display text-4xl md:text-6xl text-white font-light mt-4 max-w-2xl"
           >
-              Service menu
-              <br />
-              refined and modern
+            Service menu
+            <br />
+            refined and modern
           </motion.h1>
         </div>
       </section>
@@ -83,7 +99,6 @@ const Menu = () => {
             <div className="space-y-14">
               {menuGroups.map((group, index) => (
                 <motion.div
-                  key={group.title}
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -94,18 +109,24 @@ const Menu = () => {
                     <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground font-body">
                       {group.subtitle}
                     </p>
-                    <h2 className="font-display text-3xl md:text-4xl text-foreground mt-2">
-                      {group.title}
-                    </h2>
                   </div>
                   <div className="space-y-6">
                     {group.items.map((item) => (
-                      <div key={item.name} className="flex items-start justify-between gap-6">
+                      <div
+                        key={item.name}
+                        className="flex items-start justify-between gap-6"
+                      >
                         <div>
-                          <h3 className="font-display text-xl text-foreground">{item.name}</h3>
-                          <p className="text-sm text-muted-foreground font-body">{item.detail}</p>
+                          <h3 className="font-display text-xl text-foreground">
+                            {item.name}
+                          </h3>
+                          <p className="text-sm text-muted-foreground font-body">
+                            {item.detail}
+                          </p>
                         </div>
-                        <p className="font-body text-sm text-foreground shrink-0">{item.price}</p>
+                        <p className="font-body text-sm text-foreground shrink-0">
+                          {item.price}
+                        </p>
                       </div>
                     ))}
                   </div>
@@ -121,13 +142,15 @@ const Menu = () => {
               className="space-y-10"
             >
               <div className="bg-background/80 border border-border p-8">
-                <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground font-body">Booking</p>
+                <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground font-body">
+                  Booking
+                </p>
                 <h3 className="font-display text-2xl text-foreground mt-3">
                   Personal booking
                 </h3>
                 <p className="text-sm text-muted-foreground font-body mt-4 leading-relaxed">
-                  Personalized sessions based on your hair and style. Please book ahead for the best
-                  experience.
+                  Personalized sessions based on your hair and style. Please
+                  book ahead for the best experience.
                 </p>
                 <Link
                   to="/booking"
@@ -138,7 +161,9 @@ const Menu = () => {
               </div>
 
               <div className="bg-charcoal text-white p-8">
-                <p className="text-xs uppercase tracking-[0.3em] text-gold-light font-body">Instagram</p>
+                <p className="text-xs uppercase tracking-[0.3em] text-gold-light font-body">
+                  Instagram
+                </p>
                 <h3 className="font-display text-2xl mt-3">Follow the style</h3>
                 <img
                   src="/QR%20Code_Willow%20Hair%20Salon_Instagram/design%20(1).png"

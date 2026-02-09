@@ -35,7 +35,7 @@ const About = () => {
 
             <div className="grid grid-cols-3 gap-6 mt-12 pt-8 border-t border-border">
               <div>
-                <p className="font-display text-3xl text-foreground">10+</p>
+                <p className="font-display text-3xl text-foreground">20+</p>
                 <p className="text-xs text-muted-foreground uppercase tracking-wider mt-1">
                   Years
                 </p>
@@ -47,7 +47,7 @@ const About = () => {
                 </p>
               </div>
               <div>
-                <p className="font-display text-3xl text-foreground">15+</p>
+                <p className="font-display text-3xl text-foreground">3+</p>
                 <p className="text-xs text-muted-foreground uppercase tracking-wider mt-1">
                   Stylists
                 </p>

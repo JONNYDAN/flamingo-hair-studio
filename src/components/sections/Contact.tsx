@@ -72,8 +72,8 @@ const Contact = () => {
               <div>
                 <h3 className="font-display text-xl mb-2 text-foreground">Email</h3>
                 <p className="text-muted-foreground font-body">
-                  <a href="mailto:hello@hairstudio.vn" className="hover:text-accent transition-colors">
-                    hello@hairstudio.vn
+                  <a href="mailto:support@willowglencuts.com" className="hover:text-accent transition-colors">
+                    support@willowglencuts.com
                   </a>
                 </p>
               </div>
@@ -101,16 +101,10 @@ const Contact = () => {
               </p>
               <div className="flex gap-4">
                 <a
-                  href="#"
+                  href="https://www.instagram.com/willowglen.hairsalon/"
                   className="w-12 h-12 rounded-full border border-border flex items-center justify-center hover:border-accent hover:text-accent transition-colors"
                 >
                   <Instagram className="w-5 h-5" />
-                </a>
-                <a
-                  href="#"
-                  className="w-12 h-12 rounded-full border border-border flex items-center justify-center hover:border-accent hover:text-accent transition-colors"
-                >
-                  <Facebook className="w-5 h-5" />
                 </a>
               </div>
             </div>

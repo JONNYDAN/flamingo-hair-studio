@@ -60,25 +60,15 @@ const Footer = () => {
               <br />
               +1 (408) 978-1499
             </p>
+            
+          </div>
+
+          <div>
             <img
               src="/BusinessCard_WillowGlenHairSalon/front_fullcolor_1024x599.png"
               alt="Business card"
               className="mt-6 w-full max-w-[220px]"
             />
-          </div>
-
-          <div>
-            <p className="text-xs uppercase tracking-[0.3em] text-background/50 font-body">
-              Instagram
-            </p>
-            <img
-              src="/QR%20Code_Willow%20Hair%20Salon_Instagram/design%20(1).png"
-              alt="QR Instagram"
-              className="mt-6 w-28 h-28 object-contain bg-white p-2"
-            />
-            <p className="font-body text-xs text-background/60 mt-4">
-              Scan for our latest looks.
-            </p>
           </div>
         </div>
 

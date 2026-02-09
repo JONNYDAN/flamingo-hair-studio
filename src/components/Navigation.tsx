@@ -72,7 +72,7 @@ const Navigation = () => {
               <img
                 src="/Logo/fulllogo_transparent.png"
                 alt="Willow Hair Salon"
-                style={{ width: "100px", height: "auto" }}
+                style={{ width: "150px", height: "auto" }}
               />
             </Link>
 

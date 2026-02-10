@@ -72,7 +72,7 @@ const About = () => {
               </h2>
               <div className="space-y-6 text-muted-foreground font-body leading-relaxed">
                 <p>
-                  With over 10 years of beauty expertise, we deliver refined, personalized services.
+                  With over 20 years of beauty expertise, we deliver refined, personalized services.
                 </p>
                 <p>
                   Our stylists stay ahead of trends and pair global technique with premium products.
@@ -149,9 +149,9 @@ const About = () => {
         <div className="container max-w-4xl mx-auto px-4">
           <div className="grid grid-cols-3 gap-8">
             {[
-              { number: "10+", label: "Years of experience" },
+              { number: "20+", label: "Years of experience" },
               { number: "5000+", label: "Clients" },
-              { number: "15+", label: "Professional stylists" },
+              { number: "1+", label: "Professional stylists" },
             ].map((stat, index) => (
               <motion.div
                 key={stat.label}

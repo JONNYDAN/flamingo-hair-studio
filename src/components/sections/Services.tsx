@@ -73,7 +73,7 @@ const Services = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="group border-b border-border py-8 flex flex-col md:flex-row justify-between md:items-center hover:bg-background/50 transition-colors px-4 -mx-4"
+              className="group border-b border-border py-8 flex md:flex-row justify-between md:items-center hover:bg-background/50 transition-colors px-4 -mx-4"
             >
               <div>
                 <h3 className="font-display text-xl md:text-2xl text-foreground mb-1">

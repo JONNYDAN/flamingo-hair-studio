@@ -68,7 +68,7 @@ const Menu = () => {
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
             backgroundImage:
-              "linear-gradient(120deg, rgba(18,12,8,0.75), rgba(18,12,8,0.2)), url('https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&w=2000&q=80')",
+              "linear-gradient(120deg, rgba(18,12,8,0.75), rgba(18,12,8,0.2)), url('https://images.pexels.com/photos/3992878/pexels-photo-3992878.jpeg?_gl=1*nsgu6b*_ga*MTA3ODIxOTI1MS4xNzcwNzIyMjEz*_ga_8JE65Q40S6*czE3NzA3MjIyMTMkbzEkZzEkdDE3NzA3MjI3NjckajU3JGwwJGgw')",
           }}
         />
         <div className="relative z-10 container max-w-6xl mx-auto px-6">

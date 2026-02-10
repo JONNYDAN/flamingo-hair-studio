@@ -47,7 +47,7 @@ const About = () => {
                 </p>
               </div>
               <div>
-                <p className="font-display text-3xl text-foreground">3+</p>
+                <p className="font-display text-3xl text-foreground">1+</p>
                 <p className="text-xs text-muted-foreground uppercase tracking-wider mt-1">
                   Stylists
                 </p>

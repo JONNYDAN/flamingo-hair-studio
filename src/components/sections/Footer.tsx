@@ -52,7 +52,7 @@ const Footer = () => {
             <p className="text-xs uppercase tracking-[0.3em] text-background/50 font-body">
               Studio / Address
             </p>
-            <p className="font-display text-2xl mt-4">Willow Hair Salon</p>
+            <p className="font-display text-2xl mt-4">Willow Glen Hair Salon</p>
             <p className="font-body text-sm text-background/60 mt-4 leading-relaxed">
               2306 Almaden Rd
               <br />
@@ -75,7 +75,7 @@ const Footer = () => {
         <div className="w-full h-px bg-background/20 my-10" />
 
         <p className="font-body text-xs text-background/40 text-center tracking-wider">
-          © {new Date().getFullYear()} Willow Hair Salon. All rights reserved.
+          © {new Date().getFullYear()} Willow Glen Hair Salon. All rights reserved.
         </p>
       </div>
     </footer>
